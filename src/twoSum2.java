@@ -1,13 +1,16 @@
 //https://leetcode.com/problems/two-sum/
 
-public class twoSum {
+import java.util.*;
+
+public class twoSum2 {
     public static int[] solution(int[] nums, int target) {
+        Map<Integer, Integer> result = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[i] + nums[j] == target) {
-                    return new int[]{i, j};
-                }
+            int complement = target - nums[i];
+            if (result.containsKey(complement)) {
+                return new int[]{result.get(complement), i};
             }
+            result.put(nums[i], i);
         }
         throw new IllegalArgumentException("No two sum solution");
     }
